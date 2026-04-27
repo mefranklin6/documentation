@@ -2,6 +2,31 @@
 
 This is a working document to collect and agree on URIs for OpenAV device microservices
 
+## Table of Contents
+
+- [PTZAbsolute](#ptzabsolute)
+- [PTZDrive](#ptzdrive)
+- [Focus](#focus)
+- [Preset](#preset)
+- [Calibrate](#calibrate)
+- [Power](#power)
+- [Volume](#volume)
+- [Video route](#video-route)
+- [Video route for QSC Core](#video-route-for-qsc-core)
+- [Audio and Video route](#audio-and-video-route)
+- [Audio and video mute](#audio-and-video-mute)
+- [Input status](#input-status)
+- [Occupancy status](#occupancy-status)
+- [Matrix mute](#matrix-mute)
+- [Matrix volume](#matrix-volume)
+- [Set state (e.g. for relay)](#set-state-eg-for-relay)
+- [Trigger state (e.g. for relay)](#trigger-state-eg-for-relay)
+- [Timed trigger state (e.g. for relay)](#timed-trigger-state-eg-for-relay)
+- [Power Cycle (e.g. for switched PDU outlets)](#power-cycle-eg-for-switched-pdu-outlets)
+- [Errors](#errors)
+- [Passcode](#passcode)
+- [Calendar Passcode](#calendar-passcode)
+
 ## Usage
 
 ### Using a device microservice directly
