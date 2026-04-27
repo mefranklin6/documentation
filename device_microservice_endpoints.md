@@ -112,34 +112,17 @@ PUT accepts `"0"` to `"100"`, makes the settings, and returns `"ok"` or an error
 
 Note: The `"name"` value is ignored by some microservices such as FPDs or projectors that have only one output.
 
-Kramer volume values:
-
-If you specify `name >= 1000` these functions will set or get the output stage channel calculated as `(name - 1000)` instead of setting the input channel specified. So for the VP-440H2 output with its single analog output, the output name is always `1000`.
-
-Input and output values for VP-440H2:
-
-```text
-output – 1 (HDMI OUT)
-input – 0 (HDMI IN 1), 1 (HDMI IN 2), 2 (HDMI IN 3), 3 (HDBT IN), 4 (PC IN)
-```
-
-Input and output values for VP-558:
-
-```text
-output: 1 (Output1),  2 (Output2), 3 (Output3) 4 (Output4)
-input: 1 (HDMI1) 2 (HDMI2) 3 (HDMI3) 4 (HDMI4) 5 (HDMI5) 6 (HDMI6) 7 (HDBT1) 8 (HDBT2) 9 (HDBT3) 10 (HDBT4 11 (PC)
-```
-
 ## Video route
 
 Gets or sets what input is routed to the specified output.
 
 Endpoint - `/:address/videoroute/:output`
 
-GET returns a number in quotes that is the input setting for the specified output (e.g. `"3"`). *(Note: this does away with the ugly `"x0AVx1"` type return values we inherited from Atlona and BYU.)*  
+GET returns a number in quotes that is the input setting for the specified output (e.g. `"3"`).
+
 PUT accepts a number, routes that input number to the specified output, and returns `"ok"` or an error.
 
-`:output` specifies the output for which we want to get or set the input that is routed to it. Numbering is the same as Volume, but don’t add `1000` for Kramer.
+`:output` specifies the output for which we want to get or set the input that is routed to it. Numbering is the same as Volume.
 
 ## Video route for QSC Core
 
@@ -187,7 +170,7 @@ GET returns a number in quotes that is the input setting for the specified outpu
 
 PUT accepts a number, routes that input number to the specified output, and returns `"ok"` or an error.
 
-`:output` specifies the output for which we want to set the input that is routed to it. Numbering is the same as Volume, but don’t add `1000` for Kramer.
+`:output` specifies the output for which we want to set the input that is routed to it. Numbering is the same as Volume.
 
 ## Audio and video mute
 
@@ -203,9 +186,7 @@ PUT accepts `"true"` or `"false"` in the body, makes that setting for audio or v
 
 BUG: The OpenAV PJLink microservice uses `"on"` and `"off"` instead of `"true"` and `"false"` for the `*mute` endpoints. This is a holdover from previous endpoints that never got changed. If we change this, we probably want to add `"true"` and `"false"` and leave `"on"` and `"off"` so we don’t have to change all the config files in sync with changing the microservice.
 
-NOTE 1: audiomute is not implemented for VP-558 (would be a lot of work to implement it), but we do use it for VP-440H2 in rooms that don’t have a DSP. VP-558 is an old product, and we expect that a room with a video switcher that big will also have a DSP for audio mute control.
-
-NOTE 2: videoandaudiomute is our response to the ugly fact that some PJLink devices throw an error when trying to mute audio or video independently because they can only mute both at once.
+NOTE: videoandaudiomute is our response to the ugly fact that some PJLink devices throw an error when trying to mute audio or video independently because they can only mute both at once.
 
 ## Input status
 
@@ -217,7 +198,7 @@ GET returns the signal status for the specified input (`"true"` or `"false"`).
 
 ## Occupancy status
 
-Reports (in the OpenAV `occupancy_detected` format) based on the status of a single input. If there is a connection synced to the specified input, it returns true. Otherwise it returns false. The idea is that the system can decide not to auto shutdown if certain inputs (e.g. HDMI) have a synced connection. *(Note: For Kramer, at least this is very similar to videoinputstatus, but it formats the response differently.)*
+Reports (in the OpenAV `occupancy_detected` format) based on the status of a single input. If there is a connection synced to the specified input, it returns true. Otherwise it returns false. The idea is that the system can decide not to auto shutdown if certain inputs (e.g. HDMI) have a synced connection.
 
 Endpoint - `/:address/occupancystatus/:input`
 
