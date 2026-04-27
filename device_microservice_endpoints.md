@@ -1,8 +1,42 @@
-# OpenAV unified endpoint definitions
+# Device Microservice Unified Endpoint Definitions
 
-This is a working document to collect and agree on URIs for OpenAV microservices
+This is a working document to collect and agree on URIs for OpenAV device microservices
 
-For all of these, `:address` is the hostname or IP address of the device (e.g. `m210-video-switcher.thayer.dartmouth.edu`).
+## Usage
+
+### Using a device microservice directly
+
+You can call an exposed microservice endpoint directly using the following format:
+
+`http://<microserviceAddr>/<protocol>|<user>:<pw>@<deviceAddr>:<devicePort>`
+
+#### Params
+
+- `microserviceAddr`: Mandatory IP or hostname of the exposed microservice
+
+- `protocol`: New in [microservice-framework](https://github.com/dartmouth-openav/microservice-framework) version 1.4.10, specify an optional protocol such as SSH or Telnet. See [Pull Request 5](https://github.com/Dartmouth-OpenAV/microservice-framework/pull/5) for complete details.
+
+- `user`: optional username for the device
+
+- `pw`: optional password for the device
+
+- `deviceAddr`: Mandatory device IP address or hostname
+
+- `devicePort`: Optional port for device communication
+
+Full Example: `http://192.168.1.5/telnet|user:secretpw@192.168.1.10:23/`
+
+Minimal Example: `http://192.168.1.5/:@192.168.1.10`
+
+### Using an endpoint in an OpenAV JSON configuration
+
+For all of the below, `:address` is the hostname or IP address of the device (e.g. `m210-video-switcher.thayer.dartmouth.edu`).
+
+```json
+"get": [
+  "dartmouth-openav/microservice-pjlink:current/user:pw@192.168.254.3/power"
+],
+```
 
 ## PTZAbsolute (was PantiltAbsolute)
 
@@ -73,7 +107,6 @@ Endpoint - `/:address/volume/:name`
 
 GET returns a number in quotes that is the volume setting for the specified input or output (e.g. `"65"`). If the device is unavailable to query for volume, then return `0`.  
 PUT accepts `"0"` to `"100"`, makes the settings, and returns `"ok"` or an error.  
-ASK ??
 
 `:name` specifies the input or output for which we want to get or set volume. It is a number from a device-specific list.
 
