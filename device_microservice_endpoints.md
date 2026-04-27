@@ -179,7 +179,7 @@ Gets or sets audio or video mute state for the specified output.
 Audio endpoint - `/:address/audiomute/:output`  
 Video endpoint - `/:address/videomute/:output`  
 Both endpoint - `/:address/audioandvideomute/:output`  
-New for Extron DA - Video sync endpoint - `/:address/videosyncmute/:output`
+New for Extron - Video sync endpoint - `/:address/videosyncmute/:output`
 
 GET returns the mute status for audio or video: `"true"` for muted, `"false"` for not muted.  
 PUT accepts `"true"` or `"false"` in the body, makes that setting for audio or video on the specified output, and returns `"ok"` or an error. The Sony Bravia microservice, NEC LCD screen panel, and maybe others in the future also accept `"toggle"` which will flip the mute setting from `"true"` to `"false"` or vice versa.
@@ -202,7 +202,7 @@ GET returns `{"occupancy_detected": "false"}`, or an error.
 
 ## Matrix mute
 
-Mutes or unmutes a connection in the input x output matrix. Initially developed for the Shure DSP. Devices start with all points in the matrix muted.
+Mutes or unmutes a connection in the input x output matrix. Devices start with all points in the matrix muted.
 
 Endpoint - `/:address/matrixmute/:input/:output`
 
@@ -211,7 +211,7 @@ PUT accepts either `"true"` or `"false"` in the PUT body, attempts to set the mu
 
 ## Matrix volume
 
-Sets the audio gain at a point in the input x output matrix. Initially developed for the Shure DSP.
+Sets the audio gain at a point in the input x output matrix.
 
 Endpoint - `/:address/matrixvolume/:input/:output`
 
