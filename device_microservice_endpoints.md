@@ -184,8 +184,6 @@ New for Extron DA - Video sync endpoint - `/:address/videosyncmute/:output`
 GET returns the mute status for audio or video: `"true"` for muted, `"false"` for not muted.  
 PUT accepts `"true"` or `"false"` in the body, makes that setting for audio or video on the specified output, and returns `"ok"` or an error. The Sony Bravia microservice, NEC LCD screen panel, and maybe others in the future also accept `"toggle"` which will flip the mute setting from `"true"` to `"false"` or vice versa.
 
-NOTE: videoandaudiomute is our response to the ugly fact that some PJLink devices throw an error when trying to mute audio or video independently because they can only mute both at once.
-
 ## Input status
 
 Reports whether the specified input has a signal synced on it or not. Currently used only in the context of video inputs.
