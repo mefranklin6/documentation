@@ -38,7 +38,7 @@ For all of the below, `:address` is the hostname or IP address of the device (e.
 ],
 ```
 
-## PTZAbsolute (was PantiltAbsolute)
+## PTZAbsolute
 
 Endpoint - `/:address/ptzabsolute`
 
